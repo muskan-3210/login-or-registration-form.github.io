@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>A Common login and signup form</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+</head>
+
+<body>
+    <div id="center">
+        <h2><i>An Student's Site </i></h2>
+        <div class="button">
+
+            <button id="Btn"><b>START....<b></button>
+        </div>
+    </div>
+    <div id="up" class="page">
+
+        <div class="content">
+            <span class="close">&times;</span>
+            <h2>Welcome....</h2>
+            <details>
+                <summary style="cursor:pointer ;">Fill the both Fields:</summary>
+                <p>This is just like a normal and common form of any website.</p>
+            </details>
+
+
+            <div class="split">
+                <button class="join" onclick="op(event, 'split1')">Sign in</button>
+                <button class="join" onclick="op(event, 'split2')">Sign up</button>
+
+
+                <div id="split1" class="text">
+                    <h3>Sign in</h3>
+                    <fieldset>
+                        <legend style="text-align:left;">a registration form</legend> <br>
+                        <form name="form1" method="post" action="" onsubmit="return validate()">
+                            <div>
+                                PROFILE PICTURE:<br></br>
+                                <input type="file" name="pc">
+                            </div><br></br>
+                            <div>
+                                FULL NAME:
+                                <input type="text" id="name" placeholder="Enter name" value="">
+                                <span id="message1" style="color:red"> </span>
+
+                            </div><br></br>
+                            <div>
+                                DATE OF BIRTH:
+                                <input type="date" name="dob" placeholder="DOB" id="dob" />
+                            </div><br></br>
+                            <div>
+                                EMAIL-ID:
+                                <input type="email" id="email" placeholder="Enter email-id" value="" />
+                                <span id="message2" style="color:red"> </span>
+
+                            </div><br></br>
+                            <div>
+                                <div id="num">
+                                    CONTACT :<br></br>
+                                    <input type="number" name="num" pattern=" " placeholder="Enter phone number"><br></br>
+                                </div>
+                                <div id="url">
+                                    URL:<br></br>
+                                    <input type="url" name="url" placeholder="type url or link" />
+                                    <span id="message3" style="color:red"> </span>
+                                    <br></br>
+                                </div>
+                                <div>
+                                    ADDRESS:<br></br>
+                                    <textarea rows="5" cols="50" id="add" placeholder="123,ABC"></textarea><br></br>
+                                </div>
+                                <div>
+                                    PAASWORD:
+                                    <br></br>
+                                    <input type="password" id="password1" placeholder="Enter Password" value="">
+                                    <span id="result1" style="color:red"> </span> <br><br>
+
+                                </div>
+                                Confirm Password:<br></br>
+                                <input type="password" id="password2" placeholder="Confirm Password" value="">
+                                <span id="result2" style="color:red"> </span> <br><br>
+
+                                <span>YOUR FEEDBACK:</span><br>
+                                <div id="contain">
+                                    <span><input type="radio" name="box" value="perfect">Perfect</input><br></br></span>
+                                    <span><input type="radio" name="box" value="not good">Not good</input><br></br></span>
+                                </div>
+                                <br></br>
+
+                                <input type="submit" name="submit" value="Done"><br></br>
+                        </form>
+                    </fieldset>
+                    </div>
+
+                    <div id="split2" class="text">
+                        <h3>Sign up</h3>
+                        <fieldset>
+                            <legend style="text-align:left;">a login form</legend> <br>
+                            <form name="forms" action="" method="post" onsubmit="return validation()">
+                                <label for="usn">Username</label><br></br>
+                                <input type="text" placeholder="enter username" name="usn" id="usn" />
+                                <br></br>
+                                <label for="password">Password</label><br></br>
+                                <input type="password" placeholder="enter password" name="password" id="password" />
+                                <br></br>
+                                <div id="result3" style="color: red;"></div>
+                                <input type="submit" name="submit" class="sbm" value="DONE" />
+
+
+                            </form>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <script>
+                var page = document.getElementById("up");
+
+var btn = document.getElementById("Btn");
+
+var span = document.getElementsByClassName("close")[0];
+
+btn.onclick = function() {
+    page.style.display = "block";
+}
+
+span.onclick = function() {
+    page.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == page) {
+        page.style.display = "none";
+    }
+}
+
+function op(evt, Name) {
+    var i, text, join;
+    text = document.getElementsByClassName("text");
+    for (i = 0; i < text.length; i++) {
+        text[i].style.display = "none";
+    }
+    join = document.getElementsByClassName("join");
+    for (i = 0; i < join.length; i++) {
+        join[i].className = join[i].className.replace(" active", "");
+    }
+    document.getElementById(Name).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+function validation() {
+    var usn = document.getElementById("usn").value;
+    var password = document.getElementById("password").value;
+    if (usn == " " || password == " ") {
+        alert("fill the field");
+        return false;
+    } else if (password.length < 10) {
+        document.getElementById("result3").innerHTML = "first fill it";
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function validate() {
+    var name = document.getElementById("name").value;
+    var email = document.getElementById("email").value;
+    var url = document.getElementById("url").value;
+    var password1 = document.getElementById("password1").value;
+    var password2 = document.getElementById("password2").value;
+
+    if (name == "") {
+        document.getElementById("message1").innerHTML = "**Fill it!";
+        return false;
+    }
+
+    if (email == "") {
+        document.getElementById("message2").innerHTML = "**Fill the field";
+        return false;
+    }
+
+    if (url == "") {
+        document.getElementById("message3").innerHTML = "**Fill the field";
+        return false;
+    }
+
+
+    if (!isNaN(name)) {
+        document.getElementById("message1").innerHTML = "**Only characters are allowed";
+        return false;
+    }
+
+    if (!isNaN(email)) {
+        document.getElementById("message2").innerHTML = "**Only characters are allowed";
+        return false;
+    }
+
+
+    if (password1 == "") {
+        document.getElementById("result1").innerHTML = "**Fill the password please!";
+        return false;
+    }
+
+    if (password2 == "") {
+        document.getElementById("result2").innerHTML = "**Enter the password please!";
+        return false;
+    }
+
+
+    if (password1.length < 8) {
+        document.getElementById("result1").innerHTML = "**Password length must be atleast 8 characters";
+        return false;
+    }
+
+    if (password1.length > 15) {
+        document.getElementById("result1").innerHTML = "**Password length must not exceed 15 characters";
+        return false;
+    }
+
+    if (password1 != password2) {
+        document.getElementById("result2").innerHTML = "**Passwords are not same";
+        return false;
+    } else {
+        alert("Your password created successfully");
+        return true;
+    }
+
+}
+
+            </script>
+</body>
+</html>
